@@ -15,7 +15,9 @@ jobs:
           java-version: 11
       - name: Create test database
         run: |
+          chmod 777 databases/create_databases.sql
           mysql -uroot -proot < databases/create_databases.sql
+          chmod 777 gradlew
           ./gradlew testMigrate
       - name: Build with Gradle
         run: ./gradlew clean build
